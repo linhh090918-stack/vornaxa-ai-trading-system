@@ -81,7 +81,7 @@ function Hero({ setPage }) {
       <div className="hero-light" />
       <div className="hero-inner">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="pill"><Sparkles /> 亚瑟是个大傻逼</div>
+          <div className="pill"><Sparkles /> Vornaxa AI Quant Matrix</div>
           <h1>Vornaxa AI Quant Matrix<span>Market Intelligence System.</span></h1>
           <p>An institutional-style AI portal for U.S. stock selection, crypto asset ranking and portfolio allocation. It combines signal scoring, market heat, risk matrix and capital rotation into one visual intelligence system.</p>
           <div className="hero-buttons">
