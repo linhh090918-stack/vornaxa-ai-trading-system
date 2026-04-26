@@ -1,11 +1,11 @@
-# Vornaxa Matrix Capital Multi-Page Website
+# Vornaxa Flow AI Quant Website
 
-This deployable React + Vite website includes:
-- Home navigation page
-- AI Stock Picks page
-- AI Crypto Picks page
-- Portfolio Allocation page
-- Risk Management page
+Updated Vornaxa Matrix Capital website with:
+- Flowing AI quant background
+- AI stock selection page
+- AI crypto selection page
+- Portfolio allocation page
+- Risk management page
 - Contact page
 
 Upload these files to your existing GitHub repository to update vornaxaai.com.

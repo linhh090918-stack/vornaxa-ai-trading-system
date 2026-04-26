@@ -2,9 +2,9 @@ import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { motion } from 'framer-motion';
 import {
-  Activity, Bitcoin, Bot, BrainCircuit, BriefcaseBusiness, CheckCircle2, ChevronRight,
-  Coins, DatabaseZap, Flame, Gauge, Gem, PieChart, Radar, ShieldCheck, Sparkles,
-  TrendingUp, WalletCards, LockKeyhole
+  Activity, Bitcoin, BrainCircuit, BriefcaseBusiness, CheckCircle2, ChevronRight,
+  Coins, Cpu, DatabaseZap, Flame, Gauge, Gem, PieChart, Radar, ShieldCheck, Sparkles,
+  TrendingUp, WalletCards, LockKeyhole, CandlestickChart, Binary
 } from 'lucide-react';
 import './style.css';
 
@@ -41,6 +41,32 @@ const allocation = [
   { name: 'Alternatives', value: 5, note: 'Pre-IPO / RWA themes' },
 ];
 
+function FlowBackground() {
+  return (
+    <div className="flow-bg">
+      <div className="base" />
+      <motion.div className="orb orb-a" animate={{ x: [0, 140, 30, 0], y: [0, 80, 160, 0], scale: [1, 1.18, .92, 1] }} transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }} />
+      <motion.div className="orb orb-b" animate={{ x: [0, -120, -40, 0], y: [0, 90, -30, 0], scale: [1, .9, 1.22, 1] }} transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }} />
+      <motion.div className="orb orb-c" animate={{ x: [0, 90, -80, 0], y: [0, -80, -20, 0] }} transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }} />
+      <div className="grid-layer" />
+      <div className="dot-layer" />
+      <motion.div className="scan scan-cyan" animate={{ y: [0, 260, 520, 0], opacity: [.15, .8, .15, .15] }} transition={{ duration: 11, repeat: Infinity, ease: 'linear' }} />
+      <motion.div className="scan scan-gold" animate={{ y: [0, -180, -360, 0], opacity: [.12, .65, .18, .12] }} transition={{ duration: 14, repeat: Infinity, ease: 'linear' }} />
+      <svg className="flow-lines" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="flowLine" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stopColor="transparent" />
+            <stop offset="50%" stopColor="#22d3ee" />
+            <stop offset="100%" stopColor="transparent" />
+          </linearGradient>
+        </defs>
+        <motion.path d="M-120 240 C 220 80, 420 410, 760 230 S 1180 90, 1600 320" fill="none" stroke="url(#flowLine)" strokeWidth="1.5" animate={{ pathLength: [0.2, 1, 0.2], opacity: [.15, .65, .15] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} />
+        <motion.path d="M-100 540 C 260 360, 520 700, 820 470 S 1180 360, 1600 620" fill="none" stroke="url(#flowLine)" strokeWidth="1.2" animate={{ pathLength: [1, 0.25, 1], opacity: [.12, .55, .12] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
+      </svg>
+    </div>
+  );
+}
+
 function Logo() {
   return (
     <div className="logo-wrap">
@@ -53,10 +79,31 @@ function Logo() {
   );
 }
 
+function QuantFloatingPanel() {
+  return (
+    <div className="quant-floats">
+      <motion.div animate={{ y: [0, -16, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-a">
+        <div><Cpu /> Quant Engine</div>
+        <strong>94.8</strong>
+        <i><u /></i>
+      </motion.div>
+      <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-b">
+        <div><CandlestickChart /> Signal Flow</div>
+        <div className="mini-bars">{[28, 42, 35, 58, 76].map((h, i) => <span key={i} style={{ height: h }} />)}</div>
+      </motion.div>
+      <motion.div animate={{ x: [0, 14, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-c">
+        <div><Binary /> AI Risk Matrix</div>
+        <div className="matrix">{Array.from({ length: 18 }).map((_, i) => <span key={i} className={i % 4 === 0 ? 'gold' : ''} />)}</div>
+      </motion.div>
+    </div>
+  );
+}
+
 function Hero({ setPage }) {
   return (
     <section className="hero">
       <div className="network-bg" />
+      <QuantFloatingPanel />
       <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-inner">
         <div className="pill"><Sparkles /> AI-Driven Capital Intelligence</div>
         <h1>AI-Driven Capital Intelligence.<span>Superior Risk-Adjusted Returns.</span></h1>
@@ -248,6 +295,7 @@ function App() {
 
   return (
     <div className="app">
+      <FlowBackground />
       <header className="header">
         <div className="header-inner">
           <button onClick={() => setPage('home')} className="logo-button"><Logo /></button>
