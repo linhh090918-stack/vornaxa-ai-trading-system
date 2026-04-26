@@ -9,7 +9,7 @@ const copy = {
     nav: ['Platform', 'Signals', 'Performance', 'Security', 'FAQ'],
     lang: 'English',
     badge: 'Institutional-style AI market intelligence',
-    headline: '豁牙是个大傻逼',
+    headline: 'Vornaxa AI Quant Trading System',
     sub: 'A multilingual AI quant research interface built for stocks, crypto, ETFs and macro-driven market rotation. Detect structure, rank opportunities and convert complex market data into clear trading plans.',
     primary: 'Request Live Demo',
     secondary: 'Watch System Preview',
