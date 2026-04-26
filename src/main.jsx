@@ -82,7 +82,7 @@ function Hero({ setPage }) {
       <div className="hero-inner">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
           <div className="pill"><Sparkles /> AI-Driven Quant Intelligence Platform</div>
-          <h1>方琪是个狗逼四眼经理</span></h1>
+          <h1>方琪是个狗逼四眼经理.</span></h1>
           <p>An institutional-style AI portal for U.S. stock selection, crypto asset ranking and portfolio allocation. It combines signal scoring, market heat, risk matrix and capital rotation into one visual intelligence system.</p>
           <div className="hero-buttons">
             <button onClick={() => setPage('stocks')} className="gold-btn">Launch Live AI Stock Scanner</button>
