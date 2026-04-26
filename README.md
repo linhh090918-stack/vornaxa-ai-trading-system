@@ -1,9 +1,8 @@
-# Vornaxa Finnhub Live Scanner
+# Vornaxa Live Stock + Crypto Scanner
 
-This version adds a secure Vercel backend API:
+This version includes secure Vercel backend APIs:
 
-- /api/stock-scanner
-- Uses FINNHUB_API_KEY from Vercel Environment Variables
-- AI Stock Picks page calls the backend and ranks U.S. stocks by live quote data
+- /api/stock-scanner: Uses FINNHUB_API_KEY from Vercel Environment Variables.
+- /api/crypto-scanner: Uses CoinGecko public market API, no key required.
 
-After uploading, redeploy on Vercel.
+AI Stock Picks and AI Crypto Picks pages now pull live data through backend APIs.

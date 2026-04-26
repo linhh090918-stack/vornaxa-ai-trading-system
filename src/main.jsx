@@ -81,7 +81,7 @@ function Hero({ setPage }) {
       <div className="hero-light" />
       <div className="hero-inner">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-          <div className="pill"><Sparkles /> Vornaxa AI Quant Matrix</div>
+          <div className="pill"><Sparkles /> AI-Driven Quant Intelligence Platform</div>
           <h1>Vornaxa AI Quant Matrix<span>Market Intelligence System.</span></h1>
           <p>An institutional-style AI portal for U.S. stock selection, crypto asset ranking and portfolio allocation. It combines signal scoring, market heat, risk matrix and capital rotation into one visual intelligence system.</p>
           <div className="hero-buttons">
@@ -220,10 +220,91 @@ function StockPage() {
 }
 
 function CryptoPage() {
+  const fallbackCrypto = [
+    { rank: 1, symbol: 'BTC', name: 'Bitcoin', category: 'Core Asset', price: 68420, change24h: 2.31, change7d: 4.6, aiScore: 92, signal: 'Demo Breakout Watch', risk: 'Low', reason: ['Demo data until CoinGecko connects'] },
+    { rank: 2, symbol: 'ETH', name: 'Ethereum', category: 'Smart Contract', price: 3680, change24h: 3.08, change7d: 5.2, aiScore: 89, signal: 'Demo Rotation Inflow', risk: 'Medium', reason: ['Demo data until CoinGecko connects'] },
+    { rank: 3, symbol: 'SOL', name: 'Solana', category: 'High Beta L1', price: 151.2, change24h: 5.44, change7d: 8.1, aiScore: 86, signal: 'Demo Momentum Active', risk: 'High', reason: ['Demo data until CoinGecko connects'] },
+    { rank: 4, symbol: 'LINK', name: 'Chainlink', category: 'Oracle / RWA', price: 17.82, change24h: 4.18, change7d: 6.7, aiScore: 82, signal: 'Demo Sector Strength', risk: 'Medium', reason: ['Demo data until CoinGecko connects'] },
+    { rank: 5, symbol: 'RNDR', name: 'Render', category: 'AI Crypto', price: 10.64, change24h: 6.21, change7d: 9.4, aiScore: 79, signal: 'Demo High Volatility', risk: 'High', reason: ['Demo data until CoinGecko connects'] },
+  ];
+
+  const [coins, setCoins] = useState(fallbackCrypto);
+  const [selected, setSelected] = useState(fallbackCrypto[0]);
+  const [loading, setLoading] = useState(false);
+  const [updatedAt, setUpdatedAt] = useState('');
+  const [error, setError] = useState('');
+
+  async function loadCryptoScanner() {
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/crypto-scanner');
+      const json = await res.json();
+      if (!res.ok) throw new Error(json.error || 'Crypto scanner failed');
+      setCoins(json.data);
+      setSelected(json.data[0]);
+      setUpdatedAt(json.updatedAt);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => { loadCryptoScanner(); }, []);
+
   return (
-    <PageShell eyebrow="Vornaxa AI Crypto Selection" title="Crypto Asset Intelligence & Smart Coin Ranking" subtitle="Crypto module is currently a visual research model. It can be connected to a crypto API in the next phase.">
-      <DashboardCards cards={[[Bitcoin, 'BTC Regime', 'Bullish'], [Coins, 'Altcoin Heat', '76/100'], [WalletCards, 'Liquidity', 'Improving'], [ShieldCheck, 'Risk Guard', 'Strict']]} />
-      <DataTable rows={cryptoRows} type="crypto" />
+    <PageShell eyebrow="Live CoinGecko API Connected" title="Crypto Asset Intelligence & Smart Coin Ranking" subtitle="This crypto scanner pulls real-time public market data through a Vercel backend API, then ranks coins by narrative weight, 24H momentum, 7D trend and liquidity activity.">
+      <div className="scanner-layout">
+        <div className="stock-list-panel">
+          <div className="panel-top">
+            <div>
+              <h3>AI Crypto Selection Pool</h3>
+              <p>{updatedAt ? `Updated ${new Date(updatedAt).toLocaleString()}` : 'Demo list shown until live data loads'}</p>
+            </div>
+            <button onClick={loadCryptoScanner} className="refresh-btn" disabled={loading}>
+              {loading ? <Loader2 className="spin" /> : <RefreshCcw />} Refresh
+            </button>
+          </div>
+          {error && <div className="error-box">{error}</div>}
+          <div className="stock-list">
+            {coins.map((c) => (
+              <button key={c.symbol} onClick={() => setSelected(c)} className={selected?.symbol === c.symbol ? 'stock-row active' : 'stock-row'}>
+                <span className="rank">{c.rank}</span>
+                <div><b>{c.symbol}</b><small>{c.category}</small></div>
+                <strong>{c.aiScore}</strong>
+                <em className={(c.change24h || 0) >= 0 ? 'green' : 'red'}>{(c.change24h || 0).toFixed(2)}%</em>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="analysis-panel">
+          <div className="analysis-head">
+            <div>
+              <h3>{selected?.symbol} · {selected?.name}</h3>
+              <p>{selected?.signal}</p>
+            </div>
+            <div className="score-badge">{selected?.aiScore}</div>
+          </div>
+          <div className="chart-sim">
+            <svg viewBox="0 0 100 48" preserveAspectRatio="none">
+              <path d="M0 34 L8 31 L16 36 L24 28 L32 23 L40 26 L48 18 L56 21 L64 12 L72 16 L80 9 L90 13 L100 7" fill="none" stroke="#22d3ee" strokeWidth="1.6" />
+              <path d="M0 34 L8 31 L16 36 L24 28 L32 23 L40 26 L48 18 L56 21 L64 12 L72 16 L80 9 L90 13 L100 7 L100 48 L0 48 Z" fill="rgba(34,211,238,.13)" />
+            </svg>
+          </div>
+          <div className="metric-grid">
+            <div><span>Price</span><b>${Number(selected?.price || 0).toLocaleString(undefined, { maximumFractionDigits: 4 })}</b></div>
+            <div><span>24H</span><b className={(selected?.change24h || 0) >= 0 ? 'green' : 'red'}>{Number(selected?.change24h || 0).toFixed(2)}%</b></div>
+            <div><span>7D</span><b className={(selected?.change7d || 0) >= 0 ? 'green' : 'red'}>{Number(selected?.change7d || 0).toFixed(2)}%</b></div>
+            <div><span>Risk</span><b>{selected?.risk}</b></div>
+          </div>
+          <div className="reason-box">
+            <h4>AI Crypto Selection Logic</h4>
+            {(selected?.reason || []).map((r) => <p key={r}><CheckCircle2 /> {r}</p>)}
+          </div>
+        </div>
+      </div>
     </PageShell>
   );
 }
