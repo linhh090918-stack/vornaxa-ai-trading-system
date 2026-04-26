@@ -1,11 +1,10 @@
-# Vornaxa Flow AI Quant Website
+# Vornaxa Premium AI Quant Site
 
-Updated Vornaxa Matrix Capital website with:
-- Flowing AI quant background
-- AI stock selection page
-- AI crypto selection page
-- Portfolio allocation page
-- Risk management page
+Premium version with stronger AI quant visual elements:
+- Holographic AI Quant Core
+- Dynamic scanning lines and particle network background
+- AI Stock Picks page
+- AI Crypto Picks page
+- Portfolio Allocation page
+- Risk Management page
 - Contact page
-
-Upload these files to your existing GitHub repository to update vornaxaai.com.

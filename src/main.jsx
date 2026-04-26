@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import { motion } from 'framer-motion';
 import {
   Activity, Bitcoin, BrainCircuit, BriefcaseBusiness, CheckCircle2, ChevronRight,
-  Coins, Cpu, DatabaseZap, Flame, Gauge, Gem, PieChart, Radar, ShieldCheck, Sparkles,
-  TrendingUp, WalletCards, LockKeyhole, CandlestickChart, Binary
+  Coins, Cpu, DatabaseZap, Flame, Gauge, Gem, PieChart, Radar, ShieldCheck,
+  Sparkles, TrendingUp, WalletCards, LockKeyhole, CandlestickChart, Binary
 } from 'lucide-react';
 import './style.css';
 
@@ -41,27 +41,26 @@ const allocation = [
   { name: 'Alternatives', value: 5, note: 'Pre-IPO / RWA themes' },
 ];
 
-function FlowBackground() {
+function DeepTechBackground() {
   return (
-    <div className="flow-bg">
-      <div className="base" />
-      <motion.div className="orb orb-a" animate={{ x: [0, 140, 30, 0], y: [0, 80, 160, 0], scale: [1, 1.18, .92, 1] }} transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }} />
-      <motion.div className="orb orb-b" animate={{ x: [0, -120, -40, 0], y: [0, 90, -30, 0], scale: [1, .9, 1.22, 1] }} transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }} />
-      <motion.div className="orb orb-c" animate={{ x: [0, 90, -80, 0], y: [0, -80, -20, 0] }} transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }} />
-      <div className="grid-layer" />
-      <div className="dot-layer" />
-      <motion.div className="scan scan-cyan" animate={{ y: [0, 260, 520, 0], opacity: [.15, .8, .15, .15] }} transition={{ duration: 11, repeat: Infinity, ease: 'linear' }} />
-      <motion.div className="scan scan-gold" animate={{ y: [0, -180, -360, 0], opacity: [.12, .65, .18, .12] }} transition={{ duration: 14, repeat: Infinity, ease: 'linear' }} />
-      <svg className="flow-lines" preserveAspectRatio="none">
+    <div className="deep-bg">
+      <div className="bg-core" />
+      <motion.div className="orb orb-1" animate={{ x: [0, 160, 40, 0], y: [0, 100, 210, 0] }} transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }} />
+      <motion.div className="orb orb-2" animate={{ x: [0, -150, -40, 0], y: [0, 90, -55, 0] }} transition={{ duration: 24, repeat: Infinity, ease: 'easeInOut' }} />
+      <motion.div className="scan-line scan-1" animate={{ y: [0, 240, 520, 0], opacity: [.08, .9, .12, .08] }} transition={{ duration: 10, repeat: Infinity, ease: 'linear' }} />
+      <motion.div className="scan-line scan-2" animate={{ y: [0, -220, -440, 0], opacity: [.08, .65, .12, .08] }} transition={{ duration: 13, repeat: Infinity, ease: 'linear' }} />
+      <div className="grid" />
+      <div className="dots" />
+      <svg className="flow-svg" preserveAspectRatio="none">
         <defs>
-          <linearGradient id="flowLine" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0%" stopColor="transparent" />
-            <stop offset="50%" stopColor="#22d3ee" />
-            <stop offset="100%" stopColor="transparent" />
-          </linearGradient>
+          <linearGradient id="lineA" x1="0" x2="1"><stop offset="0%" stopColor="transparent"/><stop offset="50%" stopColor="#22d3ee"/><stop offset="100%" stopColor="transparent"/></linearGradient>
+          <linearGradient id="lineB" x1="0" x2="1"><stop offset="0%" stopColor="transparent"/><stop offset="50%" stopColor="#fef3c7"/><stop offset="100%" stopColor="transparent"/></linearGradient>
         </defs>
-        <motion.path d="M-120 240 C 220 80, 420 410, 760 230 S 1180 90, 1600 320" fill="none" stroke="url(#flowLine)" strokeWidth="1.5" animate={{ pathLength: [0.2, 1, 0.2], opacity: [.15, .65, .15] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} />
-        <motion.path d="M-100 540 C 260 360, 520 700, 820 470 S 1180 360, 1600 620" fill="none" stroke="url(#flowLine)" strokeWidth="1.2" animate={{ pathLength: [1, 0.25, 1], opacity: [.12, .55, .12] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
+        <motion.path d="M-120 180 C 220 20, 420 400, 760 220 S 1200 80, 1600 320" fill="none" stroke="url(#lineA)" strokeWidth="1.5" animate={{ pathLength: [0.1, 1, 0.1], opacity: [.15, .7, .15] }} transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }} />
+        <motion.path d="M-100 560 C 260 350, 540 720, 860 480 S 1180 350, 1600 650" fill="none" stroke="url(#lineB)" strokeWidth="1.2" animate={{ pathLength: [1, .2, 1], opacity: [.1, .55, .1] }} transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
+        {Array.from({ length: 13 }).map((_, i) => (
+          <motion.circle key={i} r="3" fill="#67e8f9" opacity=".7" animate={{ cx: [80 + i * 120, 160 + i * 120, 80 + i * 120], cy: [220 + (i % 4) * 70, 180 + (i % 5) * 80, 220 + (i % 4) * 70] }} transition={{ duration: 8 + i * .25, repeat: Infinity, ease: 'easeInOut' }} />
+        ))}
       </svg>
     </div>
   );
@@ -79,22 +78,29 @@ function Logo() {
   );
 }
 
-function QuantFloatingPanel() {
+function HologramCore() {
   return (
-    <div className="quant-floats">
-      <motion.div animate={{ y: [0, -16, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-a">
-        <div><Cpu /> Quant Engine</div>
-        <strong>94.8</strong>
-        <i><u /></i>
+    <div className="holo">
+      <motion.div className="ring ring-1" animate={{ rotate: 360 }} transition={{ duration: 28, repeat: Infinity, ease: 'linear' }} />
+      <motion.div className="ring ring-2" animate={{ rotate: -360 }} transition={{ duration: 22, repeat: Infinity, ease: 'linear' }} />
+      <motion.div className="ring ring-3" animate={{ scale: [1, 1.08, 1], opacity: [.45, .9, .45] }} transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }} />
+      <div className="holo-glow" />
+      <motion.div className="core-card" animate={{ y: [-8, 8, -8] }} transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}>
+        <BrainCircuit />
+        <span>AI Quant Core</span>
+        <strong>98.6</strong>
       </motion.div>
-      <motion.div animate={{ y: [0, 18, 0] }} transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-b">
-        <div><CandlestickChart /> Signal Flow</div>
-        <div className="mini-bars">{[28, 42, 35, 58, 76].map((h, i) => <span key={i} style={{ height: h }} />)}</div>
-      </motion.div>
-      <motion.div animate={{ x: [0, 14, 0] }} transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }} className="float-card float-c">
-        <div><Binary /> AI Risk Matrix</div>
-        <div className="matrix">{Array.from({ length: 18 }).map((_, i) => <span key={i} className={i % 4 === 0 ? 'gold' : ''} />)}</div>
-      </motion.div>
+      {[
+        ['Signal Radar', '94', 'pos-a', Radar],
+        ['Risk Matrix', 'Low', 'pos-b', ShieldCheck],
+        ['Liquidity', '+18%', 'pos-c', Activity],
+        ['Trend AI', 'Active', 'pos-d', TrendingUp],
+      ].map(([label, value, pos, Icon], i) => (
+        <motion.div key={label} className={`holo-chip ${pos}`} animate={{ y: [0, i % 2 ? 14 : -14, 0] }} transition={{ duration: 4 + i, repeat: Infinity, ease: 'easeInOut' }}>
+          <div><Icon />{label}</div>
+          <strong>{value}</strong>
+        </motion.div>
+      ))}
     </div>
   );
 }
@@ -102,40 +108,57 @@ function QuantFloatingPanel() {
 function Hero({ setPage }) {
   return (
     <section className="hero">
-      <div className="network-bg" />
-      <QuantFloatingPanel />
-      <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-inner">
-        <div className="pill"><Sparkles /> AI-Driven Capital Intelligence</div>
-        <h1>AI-Driven Capital Intelligence.<span>Superior Risk-Adjusted Returns.</span></h1>
-        <p>Vornaxa Matrix Capital integrates AI stock selection, crypto asset ranking and diversified portfolio allocation into one intelligent research portal for U.S. market investors.</p>
-        <div className="hero-buttons">
-          <button onClick={() => setPage('stocks')} className="gold-btn">Explore AI Stock Picks</button>
-          <button onClick={() => setPage('portfolio')} className="outline-btn">Build Portfolio Plan</button>
-        </div>
-        <div className="scroll">SCROLL FOR MORE</div>
-      </motion.div>
+      <div className="hero-light" />
+      <div className="hero-inner">
+        <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+          <div className="pill"><Sparkles /> AI-Driven Quant Intelligence Platform</div>
+          <h1>Vornaxa AI Quant Matrix<span>Market Intelligence System.</span></h1>
+          <p>An institutional-style AI portal for U.S. stock selection, crypto asset ranking and portfolio allocation. It combines signal scoring, market heat, risk matrix and capital rotation into one visual intelligence system.</p>
+          <div className="hero-buttons">
+            <button onClick={() => setPage('stocks')} className="gold-btn">Launch AI Stock Picks</button>
+            <button onClick={() => setPage('crypto')} className="cyan-btn">Explore Crypto Signals</button>
+          </div>
+          <div className="hero-stats">
+            {[
+              ['AI Score', '98.6'],
+              ['Markets', 'Stocks + Crypto'],
+              ['Risk', 'Matrix Guard'],
+              ['Mode', 'Live Radar'],
+            ].map(([a, b]) => (
+              <div key={a}><span>{a}</span><strong>{b}</strong></div>
+            ))}
+          </div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: .1 }}>
+          <HologramCore />
+        </motion.div>
+      </div>
     </section>
   );
 }
 
 function FeatureHighlights({ setPage }) {
   const features = [
-    { id: 'stocks', icon: TrendingUp, title: 'AI Stock Selection', bullets: ['U.S. stock heat ranking', 'AI theme and volume scoring', 'Momentum and pullback watch zones'] },
-    { id: 'crypto', icon: Bitcoin, title: 'AI Crypto Selection', bullets: ['BTC / ETH trend radar', 'High-beta altcoin heatmap', 'Risk-controlled crypto watchlist'] },
-    { id: 'portfolio', icon: PieChart, title: 'Diversified Allocation', bullets: ['Stocks + crypto + ETF framework', 'Cash reserve and drawdown buffer', 'Risk-adjusted position structure'] },
+    { id: 'stocks', icon: TrendingUp, title: 'AI Stock Selection', bullets: ['U.S. equity heat ranking', 'AI sector and volume scoring', 'Momentum / pullback watch zones'] },
+    { id: 'crypto', icon: Bitcoin, title: 'AI Crypto Selection', bullets: ['BTC / ETH regime radar', 'Altcoin liquidity heatmap', 'On-chain narrative watchlist'] },
+    { id: 'portfolio', icon: PieChart, title: 'Portfolio Allocation', bullets: ['Stocks + crypto + ETF model', 'Cash reserve and drawdown buffer', 'Risk-adjusted allocation framework'] },
   ];
   return (
     <section className="features">
-      <h2>Feature Highlights</h2>
+      <div className="section-head">
+        <span>System Modules</span>
+        <h2>Three AI Engines. One Capital Matrix.</h2>
+      </div>
       <div className="feature-grid">
         {features.map((f) => {
           const Icon = f.icon;
           return (
             <button key={f.id} onClick={() => setPage(f.id)} className="feature-card">
-              <Icon />
+              <div className="feature-glow" />
+              <div className="feature-icon"><Icon /></div>
               <h3>{f.title}</h3>
-              <ul>{f.bullets.map((b) => <li key={b}>• {b}</li>)}</ul>
-              <div className="enter">Enter Page <ChevronRight /></div>
+              <ul>{f.bullets.map((b) => <li key={b}>◆ {b}</li>)}</ul>
+              <div className="enter">Enter Intelligence Page <ChevronRight /></div>
             </button>
           );
         })}
@@ -148,7 +171,7 @@ function DashboardCards({ cards }) {
   return (
     <div className="dash-cards">
       {cards.map(([Icon, label, value]) => (
-        <div className="dash-card" key={label}>
+        <div key={label} className="dash-card">
           <Icon />
           <span>{label}</span>
           <strong>{value}</strong>
@@ -195,10 +218,13 @@ function PageShell({ eyebrow, title, subtitle, children }) {
   return (
     <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="page">
       <div className="page-card">
-        <div className="pill"><Sparkles /> {eyebrow}</div>
-        <h2>{title}</h2>
-        <p>{subtitle}</p>
-        {children}
+        <div className="page-glow" />
+        <div className="page-content">
+          <div className="pill"><Sparkles /> {eyebrow}</div>
+          <h2>{title}</h2>
+          <p>{subtitle}</p>
+          {children}
+        </div>
       </div>
     </motion.section>
   );
@@ -263,7 +289,7 @@ function RiskPage() {
     <PageShell eyebrow="Risk Management" title="Risk First, Signal Second" subtitle="Vornaxa’s public website avoids guaranteed-profit language. The platform presents research, education, watchlists and risk frameworks before execution.">
       <div className="risk-grid">
         {[[ShieldCheck, 'No guarantee claims', 'Position the system as decision support and education.'], [Gauge, 'Risk bands', 'Every signal includes volatility and invalidation logic.'], [DatabaseZap, 'Review loop', 'Track thesis, execution discipline and post-market review.']].map(([Icon, title, text]) => (
-          <div className="risk-card" key={title}><Icon /><h3>{title}</h3><p>{text}</p></div>
+          <div key={title} className="risk-card"><Icon /><h3>{title}</h3><p>{text}</p></div>
         ))}
       </div>
     </PageShell>
@@ -295,14 +321,12 @@ function App() {
 
   return (
     <div className="app">
-      <FlowBackground />
+      <DeepTechBackground />
       <header className="header">
         <div className="header-inner">
           <button onClick={() => setPage('home')} className="logo-button"><Logo /></button>
           <nav>
-            {nav.map((n) => (
-              <button key={n.id} onClick={() => setPage(n.id)} className={page === n.id ? 'active' : ''}>{n.label}</button>
-            ))}
+            {nav.map((n) => <button key={n.id} onClick={() => setPage(n.id)} className={page === n.id ? 'active' : ''}>{n.label}</button>)}
           </nav>
           <button onClick={() => setPage('contact')} className="access-btn">Request Access</button>
         </div>
