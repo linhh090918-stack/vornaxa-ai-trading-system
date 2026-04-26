@@ -1,8 +1,271 @@
-import React,{useMemo,useState}from'react';import{createRoot}from'react-dom/client';import{ArrowUpRight,Bell,Bot,BrainCircuit,CalendarDays,ChevronDown,Filter,Flame,Gauge,Globe2,LineChart,Radar,Search,ShieldCheck,Sparkles,Star,Zap}from'lucide-react';import'./style.css';
-const marketTabs=['AI Stock Picks','Self-Selected','Pre-Market Radar','Intraday Signals','Swing Watch','ETF Heatmap'];const heatTabs=['Market Breadth','Market Heat','Nasdaq','S&P 500','AI Chain','Crypto Equities'];
-const picks=[['NVDA','NVIDIA',887.24,36.18,4.25,'AI Chip',97,'Strong Buy Watch','82.4M'],['SMCI','Super Micro',951.37,48.92,5.42,'AI Server',94,'Momentum Breakout','19.8M'],['AMD','Advanced Micro Devices',164.88,7.21,4.57,'AI Chip',91,'Rotation Inflow','61.1M'],['ARM','Arm Holdings',126.43,5.72,4.74,'Semiconductor IP',88,'Trend Expansion','13.5M'],['PLTR','Palantir',23.91,1.08,4.73,'AI Software',86,'Fund Flow Active','74.2M'],['TSLA','Tesla',193.57,6.48,3.46,'AI Mobility',82,'Rebound Watch','98.6M'],['MSFT','Microsoft',426.31,8.33,1.99,'Cloud AI',80,'Core Holding','31.7M'],['GOOGL','Alphabet',154.72,3.02,1.99,'Cloud / TPU',78,'Pullback Watch','28.6M']].map((x,i)=>({rank:i+1,symbol:x[0],name:x[1],price:x[2],change:x[3],pct:x[4],sector:x[5],score:x[6],signal:x[7],volume:x[8]}));
-const sectors=[['AI Semiconductors',92,'Capital is concentrated'],['AI Servers',88,'Momentum remains active'],['Cloud Platforms',76,'Stable leadership'],['Crypto Equities',71,'High volatility'],['Defense Tech',68,'Selective strength']];const watch=[['AVGO','AI Networking',92],['MRVL','Custom Silicon',87],['MU','HBM / Memory',84],['COIN','Crypto Beta',79]];
-function Ring({v}){return <div className="ring" style={{background:`conic-gradient(#22d3ee ${v*3.6}deg,rgba(255,255,255,.08) 0deg)`}}><b>{v}</b></div>}
-function Chart(){return <div className="chart"><svg viewBox="0 0 100 54"><path d="M0 44 L8 39 L16 42 L24 31 L32 34 L40 24 L48 27 L56 17 L64 20 L72 11 L80 14 L90 7 L100 10"/><path className="area" d="M0 44 L8 39 L16 42 L24 31 L32 34 L40 24 L48 27 L56 17 L64 20 L72 11 L80 14 L90 7 L100 10 L100 54 L0 54Z"/></svg></div>}
-function App(){const[tab,setTab]=useState('AI Stock Picks'),[heat,setHeat]=useState('Market Heat'),[q,setQ]=useState('');const rows=useMemo(()=>picks.filter(p=>(p.symbol+p.name+p.sector).toLowerCase().includes(q.toLowerCase())),[q]);return <div className="site"><div className="bg"/><header><div className="wrap nav"><div className="brand"><div className="logo"><BrainCircuit/></div><div><strong>VORNAXA AI</strong><span>U.S. Smart Stock Selection</span></div></div><div className="navBtns"><button><Globe2 size={16}/>English<ChevronDown size={16}/></button><button className="cyan">Live Demo</button></div></div></header><main className="wrap"><section className="hero"><div className="card heroMain"><p className="badge"><Sparkles size={16}/>AI Quant Selection Engine</p><h1>Vornaxa AI Smart Stock Picks</h1><p className="lead">Real-time U.S. market heat, AI sector rotation, momentum ranking and risk-controlled watchlist generation for active traders.</p><div className="stats">{[[Radar,'Signal Radar','Active'],[Flame,'Hot Themes','AI Chips'],[ShieldCheck,'Risk Filter','Enabled'],[CalendarDays,'Selection Date','2026/04/24']].map(([I,a,b])=><div className="stat" key={a}><I/><span>{a}</span><b>{b}</b></div>)}</div></div><div className="card pulse"><div className="head"><div><b>AI Market Pulse</b><span>U.S. market live simulation</span></div><em>LIVE</em></div><Chart/><div className="idx">{[['NASDAQ','+1.84%'],['S&P 500','+0.96%'],['BTC','+2.31%']].map(x=><div key={x[0]}><span>{x[0]}</span><b>{x[1]}</b></div>)}</div></div></section><section className="tabs card"><div>{marketTabs.map(x=><button className={tab===x?'on':''}onClick={()=>setTab(x)} key={x}>{x}</button>)}</div><div>{heatTabs.map(x=><button className={heat===x?'greenOn':''}onClick={()=>setHeat(x)} key={x}>{x}</button>)}</div></section><section className="grid"><aside><div className="card panel"><h3>AI Sector Heat <Gauge/></h3>{sectors.map(s=><div className="sector"key={s[0]}><p><span>{s[0]}</span><b>{s[1]}</b></p><i><u style={{width:s[1]+'%'}}/></i><small>{s[2]}</small></div>)}</div><div className="card panel"><h3>High-Score Watchlist <Star/></h3>{watch.map(w=><div className="watch"key={w[0]}><div><b>{w[0]}</b><span>{w[1]}</span></div><Ring v={w[2]}/></div>)}</div></aside><section className="card board"><div className="boardTop"><div><h2><Bot/>Vornaxa AI Selection Board</h2><p>Ranked by momentum, volume expansion, theme strength and risk score.</p></div><label><Search size={16}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search symbol..."/><Filter size={16}/></label></div><div className="table"><div className="tr th"><span>Rank</span><span>Symbol</span><span>Company</span><span>Price</span><span>Change</span><span>AI Score</span><span>Signal</span></div>{rows.map(p=><div className="tr"key={p.symbol}><span><b className="rank">{p.rank}</b></span><span className="sym">{p.symbol}</span><span><b>{p.name}</b><small>{p.sector} · Vol {p.volume}</small></span><span>${p.price}</span><span className="up">+{p.change} <small>+{p.pct}%</small></span><span><b className="score">{p.score}</b></span><span className="up sig"><ArrowUpRight size={16}/>{p.signal}</span></div>)}</div><div className="risk"><span><Bell/>Signals are for research and education only. Use risk control before execution.</span><button>Unlock Live Entry Zones</button></div></section></section><section className="cta card"><div><p><LineChart size={20}/>Vornaxa AI Stock Selection Report</p><h2>Build a daily U.S. stock watchlist with AI ranking, sector heat and risk alerts.</h2><span>Designed for U.S. market opening preparation, intraday monitoring and community education.</span></div><button><Zap size={20}/>Start AI Scan</button></section></main></div>}
-createRoot(document.getElementById('root')).render(<App/>);
+import React, { useMemo, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import { motion } from 'framer-motion';
+import {
+  Activity, Bitcoin, Bot, BrainCircuit, BriefcaseBusiness, CheckCircle2, ChevronRight,
+  Coins, DatabaseZap, Flame, Gauge, Gem, PieChart, Radar, ShieldCheck, Sparkles,
+  TrendingUp, WalletCards, LockKeyhole
+} from 'lucide-react';
+import './style.css';
+
+const nav = [
+  { id: 'home', label: 'Home' },
+  { id: 'stocks', label: 'AI Stock Picks' },
+  { id: 'crypto', label: 'AI Crypto Picks' },
+  { id: 'portfolio', label: 'Portfolio Allocation' },
+  { id: 'risk', label: 'Risk Management' },
+  { id: 'contact', label: 'Contact' },
+];
+
+const stockRows = [
+  ['NVDA', 'AI Chip', '$887.24', '+4.25%', '97', 'Momentum Breakout'],
+  ['SMCI', 'AI Server', '$951.37', '+5.42%', '94', 'High Volume Inflow'],
+  ['AMD', 'AI Chip', '$164.88', '+4.57%', '91', 'Rotation Active'],
+  ['PLTR', 'AI Software', '$23.91', '+4.73%', '86', 'Trend Expansion'],
+  ['MSFT', 'Cloud AI', '$426.31', '+1.99%', '80', 'Core Strength'],
+];
+
+const cryptoRows = [
+  ['BTC', 'Core Asset', '$68,420', '+2.31%', '92', 'Breakout Watch'],
+  ['ETH', 'Smart Contract', '$3,680', '+3.08%', '89', 'Rotation Inflow'],
+  ['SOL', 'High Beta L1', '$151.20', '+5.44%', '86', 'Momentum Active'],
+  ['LINK', 'Oracle / RWA', '$17.82', '+4.18%', '82', 'Sector Strength'],
+  ['RNDR', 'AI Crypto', '$10.64', '+6.21%', '79', 'High Volatility'],
+];
+
+const allocation = [
+  { name: 'U.S. Stocks', value: 45, note: 'AI leaders, cloud, semiconductors' },
+  { name: 'Crypto Assets', value: 25, note: 'BTC, ETH, selective high beta' },
+  { name: 'ETFs / Defensive', value: 15, note: 'Index, dividend, low volatility' },
+  { name: 'Cash Reserve', value: 10, note: 'Opportunity fund and drawdown buffer' },
+  { name: 'Alternatives', value: 5, note: 'Pre-IPO / RWA themes' },
+];
+
+function Logo() {
+  return (
+    <div className="logo-wrap">
+      <div className="logo-box"><BrainCircuit /></div>
+      <div>
+        <div className="logo-title">VMC</div>
+        <div className="logo-sub">Vornaxa Matrix Capital</div>
+      </div>
+    </div>
+  );
+}
+
+function Hero({ setPage }) {
+  return (
+    <section className="hero">
+      <div className="network-bg" />
+      <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="hero-inner">
+        <div className="pill"><Sparkles /> AI-Driven Capital Intelligence</div>
+        <h1>AI-Driven Capital Intelligence.<span>Superior Risk-Adjusted Returns.</span></h1>
+        <p>Vornaxa Matrix Capital integrates AI stock selection, crypto asset ranking and diversified portfolio allocation into one intelligent research portal for U.S. market investors.</p>
+        <div className="hero-buttons">
+          <button onClick={() => setPage('stocks')} className="gold-btn">Explore AI Stock Picks</button>
+          <button onClick={() => setPage('portfolio')} className="outline-btn">Build Portfolio Plan</button>
+        </div>
+        <div className="scroll">SCROLL FOR MORE</div>
+      </motion.div>
+    </section>
+  );
+}
+
+function FeatureHighlights({ setPage }) {
+  const features = [
+    { id: 'stocks', icon: TrendingUp, title: 'AI Stock Selection', bullets: ['U.S. stock heat ranking', 'AI theme and volume scoring', 'Momentum and pullback watch zones'] },
+    { id: 'crypto', icon: Bitcoin, title: 'AI Crypto Selection', bullets: ['BTC / ETH trend radar', 'High-beta altcoin heatmap', 'Risk-controlled crypto watchlist'] },
+    { id: 'portfolio', icon: PieChart, title: 'Diversified Allocation', bullets: ['Stocks + crypto + ETF framework', 'Cash reserve and drawdown buffer', 'Risk-adjusted position structure'] },
+  ];
+  return (
+    <section className="features">
+      <h2>Feature Highlights</h2>
+      <div className="feature-grid">
+        {features.map((f) => {
+          const Icon = f.icon;
+          return (
+            <button key={f.id} onClick={() => setPage(f.id)} className="feature-card">
+              <Icon />
+              <h3>{f.title}</h3>
+              <ul>{f.bullets.map((b) => <li key={b}>• {b}</li>)}</ul>
+              <div className="enter">Enter Page <ChevronRight /></div>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function DashboardCards({ cards }) {
+  return (
+    <div className="dash-cards">
+      {cards.map(([Icon, label, value]) => (
+        <div className="dash-card" key={label}>
+          <Icon />
+          <span>{label}</span>
+          <strong>{value}</strong>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DataTable({ rows, type }) {
+  const headers = type === 'crypto' ? ['Asset', 'Category', 'Price', '24H', 'AI Score', 'Signal'] : ['Ticker', 'Theme', 'Price', 'Change', 'AI Score', 'Signal'];
+  return (
+    <div className="table">
+      <div className="tr th">{headers.map((h) => <div key={h}>{h}</div>)}</div>
+      {rows.map((row) => (
+        <div key={row[0]} className="tr">
+          {row.map((c, i) => <div key={i} className={i === 0 ? 'strong' : i === 3 ? 'green' : i === 4 ? 'cyan' : ''}>{c}</div>)}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SidePanel({ title, items }) {
+  return (
+    <div className="side-panel">
+      <h3>{title}</h3>
+      <div className="bars">
+        {items.map((item) => {
+          const value = Number(item.split(' ').at(-1));
+          return (
+            <div key={item}>
+              <div className="bar-line"><span>{item.replace(/ \d+$/, '')}</span><b>{value}</b></div>
+              <div className="bar"><i style={{ width: `${value}%` }} /></div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function PageShell({ eyebrow, title, subtitle, children }) {
+  return (
+    <motion.section initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} className="page">
+      <div className="page-card">
+        <div className="pill"><Sparkles /> {eyebrow}</div>
+        <h2>{title}</h2>
+        <p>{subtitle}</p>
+        {children}
+      </div>
+    </motion.section>
+  );
+}
+
+function StockPage() {
+  return (
+    <PageShell eyebrow="Vornaxa AI Stock Selection" title="U.S. Market Intelligent Stock Picking" subtitle="Designed for U.S. equities. The system ranks AI leaders, cloud platforms, semiconductor momentum, institutional volume and risk-adjusted watch opportunities.">
+      <DashboardCards cards={[[Radar, 'Market Heat', '89/100'], [Flame, 'Hot Theme', 'AI Chips'], [Gauge, 'Risk Filter', 'Enabled'], [Activity, 'Signal Mode', 'Momentum']]} />
+      <div className="two-col">
+        <SidePanel title="AI Sector Heat" items={['AI Semiconductors 92', 'AI Servers 88', 'Cloud Platforms 76', 'Crypto Equities 71', 'Defense Tech 68']} />
+        <DataTable rows={stockRows} type="stocks" />
+      </div>
+    </PageShell>
+  );
+}
+
+function CryptoPage() {
+  return (
+    <PageShell eyebrow="Vornaxa AI Crypto Selection" title="Crypto Asset Intelligence & Smart Coin Ranking" subtitle="Built for crypto market rotation. Track BTC dominance, liquidity rotation, on-chain themes, AI coins, RWA narratives and risk-controlled entry readiness.">
+      <DashboardCards cards={[[Bitcoin, 'BTC Regime', 'Bullish'], [Coins, 'Altcoin Heat', '76/100'], [WalletCards, 'Liquidity', 'Improving'], [ShieldCheck, 'Risk Guard', 'Strict']]} />
+      <div className="two-col">
+        <SidePanel title="Crypto Narrative Heat" items={['Bitcoin Core 92', 'Ethereum Ecosystem 89', 'Solana Beta 86', 'RWA / Oracle 82', 'AI Crypto 79']} />
+        <DataTable rows={cryptoRows} type="crypto" />
+      </div>
+    </PageShell>
+  );
+}
+
+function PortfolioPage() {
+  return (
+    <PageShell eyebrow="Vornaxa Portfolio Allocation" title="Diversified Portfolio Construction" subtitle="Build a structured allocation plan across U.S. stocks, crypto assets, ETFs, cash reserve and alternative opportunities. The focus is risk-adjusted growth, not blind concentration.">
+      <DashboardCards cards={[[PieChart, 'Model Portfolio', 'Balanced'], [BriefcaseBusiness, 'Asset Classes', '5'], [LockKeyhole, 'Cash Buffer', '10%'], [Gem, 'Growth Sleeve', '70%']]} />
+      <div className="portfolio-grid">
+        <div className="side-panel">
+          <h3>Allocation Model</h3>
+          <div className="bars">
+            {allocation.map((a) => (
+              <div key={a.name}>
+                <div className="bar-line"><span>{a.name}</span><b>{a.value}%</b></div>
+                <div className="bar"><i style={{ width: `${a.value}%` }} /></div>
+                <small>{a.note}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="side-panel">
+          <h3>Portfolio Logic</h3>
+          <div className="logic-list">
+            {['Use U.S. AI leaders as growth core', 'Use BTC / ETH as digital asset anchor', 'Use ETFs and defensive assets to reduce volatility', 'Keep cash reserve for market dislocation', 'Rebalance when risk score changes'].map((x) => (
+              <div key={x}><CheckCircle2 />{x}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </PageShell>
+  );
+}
+
+function RiskPage() {
+  return (
+    <PageShell eyebrow="Risk Management" title="Risk First, Signal Second" subtitle="Vornaxa’s public website avoids guaranteed-profit language. The platform presents research, education, watchlists and risk frameworks before execution.">
+      <div className="risk-grid">
+        {[[ShieldCheck, 'No guarantee claims', 'Position the system as decision support and education.'], [Gauge, 'Risk bands', 'Every signal includes volatility and invalidation logic.'], [DatabaseZap, 'Review loop', 'Track thesis, execution discipline and post-market review.']].map(([Icon, title, text]) => (
+          <div className="risk-card" key={title}><Icon /><h3>{title}</h3><p>{text}</p></div>
+        ))}
+      </div>
+    </PageShell>
+  );
+}
+
+function ContactPage() {
+  return (
+    <PageShell eyebrow="Contact" title="Request Vornaxa AI Access" subtitle="Use this page as the conversion entrance for demo requests, membership consultation and premium AI report access.">
+      <div className="contact-box">
+        <h3>Start with the AI Market Intelligence Portal</h3>
+        <p>Connect this page to your assistant, form, Telegram, WhatsApp or member onboarding flow later.</p>
+        <button className="gold-btn">Request Demo</button>
+      </div>
+    </PageShell>
+  );
+}
+
+function App() {
+  const [page, setPage] = useState('home');
+  const pageView = useMemo(() => {
+    if (page === 'stocks') return <StockPage />;
+    if (page === 'crypto') return <CryptoPage />;
+    if (page === 'portfolio') return <PortfolioPage />;
+    if (page === 'risk') return <RiskPage />;
+    if (page === 'contact') return <ContactPage />;
+    return <><Hero setPage={setPage} /><FeatureHighlights setPage={setPage} /></>;
+  }, [page]);
+
+  return (
+    <div className="app">
+      <header className="header">
+        <div className="header-inner">
+          <button onClick={() => setPage('home')} className="logo-button"><Logo /></button>
+          <nav>
+            {nav.map((n) => (
+              <button key={n.id} onClick={() => setPage(n.id)} className={page === n.id ? 'active' : ''}>{n.label}</button>
+            ))}
+          </nav>
+          <button onClick={() => setPage('contact')} className="access-btn">Request Access</button>
+        </div>
+        <div className="mobile-nav">
+          {nav.map((n) => <button key={n.id} onClick={() => setPage(n.id)} className={page === n.id ? 'active' : ''}>{n.label}</button>)}
+        </div>
+      </header>
+      <main>{pageView}</main>
+      <footer>© 2026 Vornaxa Matrix Capital. AI research, education and portfolio intelligence. Trading involves risk.</footer>
+    </div>
+  );
+}
+
+createRoot(document.getElementById('root')).render(<App />);
