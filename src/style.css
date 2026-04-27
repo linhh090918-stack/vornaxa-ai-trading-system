@@ -188,3 +188,89 @@
   .formula { font-size: 24px !important; }
   .bg-floor { height: 45% !important; }
 }
+
+
+/* ===== USER LOGO + DEEPER QUANT SYMBOL BACKGROUND PATCH ===== */
+.site-logo {
+  width: 108px !important;
+  height: 82px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 18px !important;
+  border: 1px solid rgba(103, 232, 249, 0.45) !important;
+  background: #020713 !important;
+  box-shadow:
+    0 0 36px rgba(34, 211, 238, 0.45),
+    inset 0 0 18px rgba(34, 211, 238, 0.10) !important;
+}
+
+.logo-wrap {
+  gap: 16px !important;
+}
+
+.logo-box {
+  display: none !important;
+}
+
+/* make quant formulas/numbers deeper, denser and more visible */
+.formula {
+  font-size: 48px !important;
+  font-weight: 950 !important;
+  color: rgba(125, 211, 252, 0.40) !important;
+  text-shadow:
+    0 0 12px rgba(34, 211, 238, 0.35),
+    0 0 38px rgba(34, 211, 238, 0.22),
+    0 0 80px rgba(59, 130, 246, 0.12) !important;
+  mix-blend-mode: screen;
+}
+
+.formula:nth-of-type(2n) {
+  color: rgba(74, 222, 128, 0.34) !important;
+  text-shadow:
+    0 0 14px rgba(74, 222, 128, 0.35),
+    0 0 46px rgba(74, 222, 128, 0.18) !important;
+}
+
+.formula:nth-of-type(3n) {
+  color: rgba(253, 224, 71, 0.24) !important;
+  text-shadow:
+    0 0 14px rgba(253, 224, 71, 0.24),
+    0 0 48px rgba(253, 224, 71, 0.12) !important;
+}
+
+/* stronger animated digital depth */
+.quant-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(103,232,249,.045) 0px, rgba(103,232,249,.045) 1px, transparent 2px, transparent 8px),
+    radial-gradient(circle at 50% 45%, transparent 0 35%, rgba(0,0,0,.35) 68%, rgba(0,0,0,.78) 100%);
+  pointer-events: none;
+}
+
+.bg-grid {
+  opacity: .80 !important;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, .20) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, .16) 1px, transparent 1px) !important;
+}
+
+.bg-dots {
+  opacity: .62 !important;
+}
+
+.scan1,
+.scan2 {
+  opacity: .95 !important;
+}
+
+@media(max-width: 560px) {
+  .site-logo {
+    width: 78px !important;
+    height: 62px !important;
+  }
+  .formula {
+    font-size: 28px !important;
+  }
+}

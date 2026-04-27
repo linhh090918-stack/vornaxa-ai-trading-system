@@ -1,9 +1,10 @@
-# Vornaxa Ultra Cyber Quant Background
+# Vornaxa Logo + Deep Quant Background Version
 
-Includes:
-- Stronger cyberpunk / AI quant background
-- Animated perspective grid floor
-- Floating quantitative formulas
-- Neon scan lines and data-flow curves
+This package includes:
+- User-provided large V logo in /public/vornaxa-logo.png
+- favicon in /public/favicon.png
+- index.html favicon cache-busting
+- enlarged website header logo
+- deeper animated quant formulas/numbers background
 - Finnhub stock scanner API
 - CoinGecko crypto scanner API
