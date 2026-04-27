@@ -1,10 +1,9 @@
-# Vornaxa Logo + Deep Quant Background Version
+# Vornaxa US + Taiwan + Crypto Scanner
 
-This package includes:
-- User-provided large V logo in /public/vornaxa-logo.png
-- favicon in /public/favicon.png
-- index.html favicon cache-busting
-- enlarged website header logo
-- deeper animated quant formulas/numbers background
-- Finnhub stock scanner API
-- CoinGecko crypto scanner API
+Includes:
+- AI Stock Picks: Finnhub live U.S. stock scanner
+- 台股智能選股: Yahoo Finance Taiwan quote scanner
+- AI Crypto Picks: CoinGecko live crypto scanner
+- Portfolio Allocation
+- Risk Management
+- Premium cyber quant background

@@ -274,3 +274,13 @@
     font-size: 28px !important;
   }
 }
+
+
+/* Taiwan stock module navigation patch */
+nav button {
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+@media(max-width: 1180px) {
+  .access-btn { display: none !important; }
+}
