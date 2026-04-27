@@ -1,9 +1,7 @@
-# Vornaxa US + Taiwan + Crypto Scanner
+# Vornaxa US + Taiwan + Crypto Scanner — Taiwan Live Fix
 
-Includes:
-- AI Stock Picks: Finnhub live U.S. stock scanner
-- 台股智能選股: Yahoo Finance Taiwan quote scanner
-- AI Crypto Picks: CoinGecko live crypto scanner
-- Portfolio Allocation
-- Risk Management
-- Premium cyber quant background
+Changes:
+- 台股智能選股 now uses TWSE MIS live quote endpoint instead of Yahoo Finance.
+- Removes demo wording from Taiwan page.
+- Adds 今日熱門主線 ranking based on the Taiwan live quote universe.
+- Keeps U.S. Finnhub scanner and crypto CoinGecko scanner.

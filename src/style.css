@@ -284,3 +284,25 @@ nav button {
 @media(max-width: 1180px) {
   .access-btn { display: none !important; }
 }
+
+
+/* Taiwan hot sector box */
+.hot-theme-box {
+  margin-top: 14px;
+  border: 1px solid rgba(74, 222, 128, 0.28);
+  background: rgba(74, 222, 128, 0.08);
+  color: #d1fae5;
+  border-radius: 14px;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+}
+.hot-theme-box b {
+  color: #86efac;
+  font-size: 14px;
+}
+.hot-theme-box span {
+  display: block;
+  color: #cbd5e1;
+}
