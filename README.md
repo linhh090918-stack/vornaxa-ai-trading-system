@@ -1,7 +1,9 @@
-# Vornaxa Premium Flow Quant Site
+# Vornaxa Ultra Cyber Quant Background
 
 Includes:
-- Premium flowing AI quant background
-- Finnhub live stock scanner backend: /api/stock-scanner
-- CoinGecko live crypto scanner backend: /api/crypto-scanner
-- AI Stock Picks / AI Crypto Picks / Portfolio Allocation pages
+- Stronger cyberpunk / AI quant background
+- Animated perspective grid floor
+- Floating quantitative formulas
+- Neon scan lines and data-flow curves
+- Finnhub stock scanner API
+- CoinGecko crypto scanner API
