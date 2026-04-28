@@ -362,3 +362,67 @@ nav button {
 @keyframes terminalPulse{0%,100%{opacity:.78}50%{opacity:1}}
 .agent-panel,.agent-left,.agent-main,.agent-right{animation:terminalPulse 3.5s ease-in-out infinite}
 @media(max-width:1100px){.agent-hero,.agent-bottom{grid-template-columns:1fr}.agent-left,.agent-main,.agent-right{min-height:auto}.curve-box{height:280px}.agent-stats{display:none}.log-row{grid-template-columns:1fr}}
+
+
+/* ===== Dynamic Agent Terminal Animation Patch ===== */
+.flash-row {
+  transition: background .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+.flash-row:hover {
+  background: rgba(34,197,94,.055);
+  box-shadow: inset 0 0 18px rgba(34,197,94,.08);
+}
+.newest {
+  animation: newestFlash 1.35s ease-out;
+}
+@keyframes newestFlash {
+  0% {
+    background: rgba(74,222,128,.22);
+    box-shadow: 0 0 22px rgba(74,222,128,.34);
+    transform: translateY(-2px);
+  }
+  100% {
+    background: transparent;
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}
+.agent-pnl {
+  transition: color .25s ease, text-shadow .25s ease;
+}
+.agent-pnl::after {
+  content: " LIVE";
+  font-size: 13px;
+  color: #86efac;
+  margin-left: 12px;
+  letter-spacing: .18em;
+  vertical-align: middle;
+  animation: liveBlink 1s infinite;
+}
+@keyframes liveBlink {
+  0%,100% { opacity: .35; }
+  50% { opacity: 1; }
+}
+.agent-row b,
+.perf-line b,
+.wallet-row b,
+.fill-row strong,
+.log-row strong {
+  transition: color .25s ease, text-shadow .25s ease;
+}
+.green {
+  text-shadow: 0 0 12px rgba(74,222,128,.35);
+}
+.red {
+  text-shadow: 0 0 12px rgba(251,113,133,.35);
+}
+.agent-row u {
+  transition: width .55s ease;
+}
+.curve-box svg {
+  animation: curveGlow 2.4s ease-in-out infinite;
+}
+@keyframes curveGlow {
+  0%,100% { filter: drop-shadow(0 0 8px rgba(34,197,94,.55)); }
+  50% { filter: drop-shadow(0 0 18px rgba(34,197,94,.9)); }
+}
