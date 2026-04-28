@@ -306,3 +306,59 @@ nav button {
   display: block;
   color: #cbd5e1;
 }
+
+
+/* ===== AI Agent Terminal Dynamic Dashboard ===== */
+.agent-page{
+  position:relative;
+  max-width:1520px;
+  margin:0 auto;
+  padding:26px 22px 42px;
+  color:#b7f7c7;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+}
+.agent-page::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 16%,rgba(34,197,94,.18),transparent 36%),
+    linear-gradient(rgba(34,197,94,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,197,94,.06) 1px,transparent 1px);
+  background-size:auto,34px 34px,34px 34px;
+  opacity:.95;
+  pointer-events:none;
+}
+.agent-topbar,.agent-hero,.agent-bottom,.onchain-feed{position:relative;z-index:1}
+.agent-topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  border:1px solid rgba(34,197,94,.22);background:rgba(0,10,6,.72);
+  box-shadow:0 0 36px rgba(34,197,94,.12);padding:12px 16px;margin-bottom:16px;
+}
+.agent-topbar>div:first-child{font-weight:950;letter-spacing:.12em;color:#7cff9b}
+.agent-pulse{display:inline-block;width:9px;height:9px;background:#22c55e;border-radius:999px;margin-right:8px;box-shadow:0 0 18px #22c55e}
+.agent-stats{display:flex;gap:22px;font-size:12px;color:#6ee7b7}.agent-stats em{font-style:normal;color:#4ade80}
+.agent-hero{display:grid;grid-template-columns:.78fr 1.6fr .85fr;gap:16px}
+.agent-left,.agent-main,.agent-right,.agent-panel,.onchain-feed{
+  border:1px solid rgba(34,197,94,.20);background:rgba(0,8,6,.74);
+  box-shadow:inset 0 0 28px rgba(34,197,94,.05),0 0 40px rgba(0,0,0,.35);
+  backdrop-filter:blur(10px);
+}
+.agent-left,.agent-main,.agent-right{min-height:520px;padding:16px}
+.agent-page h3{margin:0 0 14px;color:#48ff7b;font-size:13px;letter-spacing:.16em}
+.agent-list{display:grid;gap:12px}.agent-row{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;border-bottom:1px solid rgba(34,197,94,.12);padding-bottom:8px}
+.agent-row strong{display:block;color:#4ade80}.agent-row small{display:block;color:#6b8f79;font-size:11px}.agent-row i{display:block;height:5px;background:rgba(34,197,94,.12);margin-top:7px}.agent-row u{display:block;height:5px;width:82%;background:#22c55e}.agent-row u.gold{background:#fde047}.agent-row u.red{background:#fb7185}.agent-row u.purple{background:#a855f7}
+.agent-row b,.green{color:#4ade80!important}.gold{color:#fde047!important}.red{color:#fb7185!important}.cyan{color:#22d3ee!important}.purple{color:#a855f7!important}
+.agent-main{position:relative;overflow:hidden}.agent-main::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(34,197,94,.035) 0 1px,transparent 2px 8px);pointer-events:none}
+.agent-title{color:#22d3ee;letter-spacing:.18em;font-size:13px}.agent-pnl{font-size:54px;font-weight:950;color:#4ade80;text-shadow:0 0 22px rgba(34,197,94,.45);margin:18px 0}
+.curve-box{height:390px;border:1px solid rgba(34,197,94,.10);background:radial-gradient(circle at 70% 35%,rgba(34,197,94,.13),transparent 35%),rgba(0,0,0,.2);padding:12px}
+.curve-box svg{width:100%;height:100%;filter:drop-shadow(0 0 10px rgba(34,197,94,.6))}
+.perf-line{display:flex;justify-content:space-between;border-bottom:1px solid rgba(34,197,94,.12);padding:10px 0;color:#6b8f79}.perf-line b{color:#c6f6d5}
+.agent-bottom{display:grid;grid-template-columns:.82fr 1.7fr .8fr;gap:16px;margin-top:16px}.agent-panel{padding:14px;min-height:260px}
+.wallet-row,.fill-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;border-bottom:1px solid rgba(34,197,94,.12);padding:9px 0;color:#6ee7b7}.wallet-row small{color:#8aa39a}
+.log-row{display:grid;grid-template-columns:70px 120px 110px 1fr 80px;gap:10px;border-bottom:1px solid rgba(34,197,94,.10);padding:7px 0;font-size:12px;color:#6ee7b7}
+.log-row em{font-style:normal;color:#fde047}.log-row p{margin:0;color:#7dd3fc}.log-row strong{text-align:right}
+.onchain-feed{margin-top:16px;padding:14px;max-width:520px;margin-left:auto}.onchain-feed p{margin:7px 0;color:#86efac;font-size:12px}
+@keyframes terminalPulse{0%,100%{opacity:.78}50%{opacity:1}}
+.agent-panel,.agent-left,.agent-main,.agent-right{animation:terminalPulse 3.5s ease-in-out infinite}
+@media(max-width:1100px){.agent-hero,.agent-bottom{grid-template-columns:1fr}.agent-left,.agent-main,.agent-right{min-height:auto}.curve-box{height:280px}.agent-stats{display:none}.log-row{grid-template-columns:1fr}}

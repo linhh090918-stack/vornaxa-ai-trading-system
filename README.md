@@ -1,7 +1,7 @@
-# Vornaxa US + Taiwan + Crypto Scanner — Taiwan Live Fix
+# Vornaxa Agent Terminal Module
 
-Changes:
-- 台股智能選股 now uses TWSE MIS live quote endpoint instead of Yahoo Finance.
-- Removes demo wording from Taiwan page.
-- Adds 今日熱門主線 ranking based on the Taiwan live quote universe.
-- Keeps U.S. Finnhub scanner and crypto CoinGecko scanner.
+Adds:
+- AI Agent Terminal navigation button
+- Dynamic terminal-style dashboard
+- Agent P&L, performance stats, execution logs, recent fills and on-chain feed
+- Keeps U.S., Taiwan and crypto scanners
